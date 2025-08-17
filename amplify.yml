@@ -5,8 +5,8 @@ applications:
       phases:
         preBuild:
           commands:
-            # Ensure backend is deployed for this branch and write amplify_outputs.json into ./public
-            - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir public
+            # Install a Node 18–compatible Amplify Backend CLI and deploy backend + write outputs
+            - npx --yes @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir public
             - npm install
         build:
           commands:
@@ -23,7 +23,7 @@ applications:
       phases:
         preBuild:
           commands:
-            - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir public
+            - npx --yes @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir public
             - npm install
         build:
           commands:
