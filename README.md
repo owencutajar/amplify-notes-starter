@@ -6,7 +6,7 @@ The backend is defined in code (Amplify Gen 2) and deployed automatically on fir
 
 ## Quick start
 1. Fork the repo.
-2. In Amplify Hosting: New app → Host web app → connect your fork (`main` branch) → set root to `apps/js` → build `npm ci && npm run build` → output `dist`.
+2. In Amplify Hosting: New app → Host web app → connect your fork (`main` branch) → set root to `apps/js` → build `npm install && npm run build` → output `dist`.
 3. Open the deployed URL and create a few notes.
 4. Create a new branch `typescript-version` and deploy the TS app from `apps/ts` similarly.
 5. Compare the developer experience across JS and TS.
