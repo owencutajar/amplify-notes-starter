@@ -13,3 +13,9 @@ The backend is defined in code (Amplify Gen 2) and deployed automatically on fir
 
 ## Security note (for teaching only)
 The API uses a public API key for minimal friction. For summative assessments, switch to authenticated access.
+
+
+---
+### Note on configuration
+The frontend now fetches `/amplify_outputs.json` at runtime and calls `Amplify.configure(outputs)` in `src/main.(jsx|tsx)`. 
+Do not import this JSON at build time; it does not exist until the app is deployed.

@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/data';
-import outputs from '../../amplify_outputs.json';
 
-Amplify.configure(outputs);
 type Note = { id: string; text: string; done: boolean; createdAt?: string };
 
 const client = generateClient({ authMode: 'apiKey' });
