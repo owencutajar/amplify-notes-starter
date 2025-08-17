@@ -19,3 +19,10 @@ The API uses a public API key for minimal friction. For summative assessments, s
 ### Note on configuration
 The frontend now fetches `/amplify_outputs.json` at runtime and calls `Amplify.configure(outputs)` in `src/main.(jsx|tsx)`. 
 Do not import this JSON at build time; it does not exist until the app is deployed.
+
+
+---
+### CI note
+The build now runs:
+- `npx ampx pipeline-deploy` to deploy the backend for the current `$AWS_BRANCH`.
+- `npx ampx generate outputs --out-dir public` to emit `public/amplify_outputs.json`, which Vite copies to `dist/` so the app can fetch it at runtime.
