@@ -5,10 +5,10 @@
     "build": "echo root build not used",
     "build:js": "npm --prefix apps/js run build",
     "build:ts": "npm --prefix apps/ts run build",
-    "deploy:backend": "npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID"
+    "deploy:backend": "ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID"
   },
   "devDependencies": {
-    "@aws-amplify/backend": "^1.3.2",
+    "@aws-amplify/backend": "^1.3.3",
     "typescript": "^5.5.4"
   }
 }

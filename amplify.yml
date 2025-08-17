@@ -5,9 +5,8 @@ applications:
       phases:
         preBuild:
           commands:
-            # Run backend deploy from the REPO ROOT so it can find amplify/backend.ts,
-            # and emit outputs into this app's public/ directory.
             - cd ../..
+            - npm install --no-audit --no-fund
             - npx -y -p @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir apps/js/public
             - cd -
             - npm install
@@ -27,6 +26,7 @@ applications:
         preBuild:
           commands:
             - cd ../..
+            - npm install --no-audit --no-fund
             - npx -y -p @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir apps/ts/public
             - cd -
             - npm install
