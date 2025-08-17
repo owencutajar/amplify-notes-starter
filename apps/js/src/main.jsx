@@ -7,7 +7,8 @@ const mount = document.getElementById('root');
 
 async function start() {
   try {
-    const url = new URL('amplify_outputs.json', import.meta.env.BASE_URL).toString();
+    // Use document.baseURI for robust base resolution across Amplify subpaths
+    const url = new URL('amplify_outputs.json', document.baseURI).toString();
     const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error(`Failed to load config: ${res.status}`);
     const outputs = await res.json();

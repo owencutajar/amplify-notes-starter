@@ -6,7 +6,7 @@ const mount = document.getElementById('root') as HTMLElement | null;
 
 async function start(): Promise<void> {
   try {
-    const url = new URL('amplify_outputs.json', import.meta.env.BASE_URL).toString();
+    const url = new URL('amplify_outputs.json', document.baseURI).toString();
     const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error(`Failed to load config: ${res.status}`);
     const outputs = await res.json();
