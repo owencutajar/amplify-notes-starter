@@ -1,0 +1,4 @@
+Recommended Amplify Hosting rewrite rule for SPA:
+Source address: </^((?!\.).)*$/>
+Target address: /index.html
+Type: 200 (Rewrite)

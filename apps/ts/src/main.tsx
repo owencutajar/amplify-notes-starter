@@ -2,11 +2,27 @@ import { createRoot } from 'react-dom/client';
 import { Amplify } from 'aws-amplify';
 import App from './App';
 
+const mount = document.getElementById('root') as HTMLElement | null;
+
 async function start(): Promise<void> {
-  const res = await fetch('/amplify_outputs.json');
-  const outputs = await res.json();
-  Amplify.configure(outputs);
-  createRoot(document.getElementById('root')!).render(<App />);
+  try {
+    const url = new URL('amplify_outputs.json', import.meta.env.BASE_URL).toString();
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed to load config: ${res.status}`);
+    const outputs = await res.json();
+    console.debug('[Amplify outputs]', outputs);
+    Amplify.configure(outputs);
+    if (mount) createRoot(mount).render(<App />);
+  } catch (err) {
+    console.error(err);
+    if (mount) {
+      mount.innerHTML = `<div style="font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto;">
+        <h1>Setup error</h1>
+        <p>Could not load <code>amplify_outputs.json</code>. Please check Amplify Hosting is connected to this branch and the backend has deployed.</p>
+        <pre style="white-space: pre-wrap; background: #f8f8f8; padding: 12px; border-radius: 8px;">${String(err)}</pre>
+      </div>`;
+    }
+  }
 }
 
 void start();
