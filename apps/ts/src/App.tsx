@@ -31,7 +31,7 @@ export default function App() {
     if (!val) return;
     setLoading(true);
     try {
-      await client.models.Note.create({ text: val, done: false });
+      await client.models.Note.create({ text: val, done: false, createdAt: new Date().toISOString() });
       setText('');
       await refresh();
     } catch (e: unknown) {

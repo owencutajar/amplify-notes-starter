@@ -5,7 +5,7 @@ export const data = defineData({
     Note: a.model({
       text: a.string().required(),
       done: a.boolean().default(false),
-      createdAt: a.datetime().defaultToNow(),
+      createdAt: a.datetime().required(),
     }).authorization((allow) => [allow.publicApiKey()]),
   }),
 });

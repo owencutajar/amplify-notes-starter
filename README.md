@@ -26,3 +26,8 @@ Do not import this JSON at build time; it does not exist until the app is deploy
 The build now runs:
 - `npx ampx pipeline-deploy` to deploy the backend for the current `$AWS_BRANCH`.
 - `npx ampx generate outputs --out-dir public` to emit `public/amplify_outputs.json`, which Vite copies to `dist/` so the app can fetch it at runtime.
+
+
+---
+### Note on timestamps
+The backend no longer uses `defaultToNow()` (not supported). The client sets `createdAt` using `new Date().toISOString()` when creating notes. 
