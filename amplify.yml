@@ -5,10 +5,11 @@ applications:
       phases:
         preBuild:
           commands:
-            - node -v && npm -v
-            # Install the Gen 2 Backend CLI *for this command* and run pipeline-deploy,
-            # also emitting amplify_outputs.json into ./public
-            - npx -y -p @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir public
+            # Run backend deploy from the REPO ROOT so it can find amplify/backend.ts,
+            # and emit outputs into this app's public/ directory.
+            - cd ../..
+            - npx -y -p @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir apps/js/public
+            - cd -
             - npm install
         build:
           commands:
@@ -25,8 +26,9 @@ applications:
       phases:
         preBuild:
           commands:
-            - node -v && npm -v
-            - npx -y -p @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir public
+            - cd ../..
+            - npx -y -p @aws-amplify/backend-cli@1.2.1 ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID --outputs-out-dir apps/ts/public
+            - cd -
             - npm install
         build:
           commands:
