@@ -1,0 +1,9 @@
+{
+  "name": "amplify-notes-compare",
+  "private": true,
+  "scripts": {
+    "build": "echo root build not used",
+    "build:js": "npm --prefix apps/js run build",
+    "build:ts": "npm --prefix apps/ts run build"
+  }
+}

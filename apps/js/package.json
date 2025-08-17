@@ -1,0 +1,5 @@
+{
+  "name": "notes-js",
+  "scripts": { "dev": "vite", "build": "vite build" },
+  "dependencies": { "react": "^18.3.1", "react-dom": "^18.3.1", "aws-amplify": "^6.3.0" }
+}
